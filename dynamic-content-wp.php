@@ -1,15 +1,15 @@
 <?php // phpcs:ignore
 /**
  * Plugin Name: Dynamic Content
- * Plugin URI: https://bsik.dev
+ * Plugin URI: https://bszyk.dev
  * Description: Easily display dynamic metadata within WordPress editor blocks.
  * Author: Brian Siklinski
  * Version: 0.2.0
  *
- * @package bsik-dynamic-content
+ * @package bszyk-dynamic-content
  */
 
-namespace BSIK_DYNAMIC_CONTENT;
+namespace BSZYK_DYNAMIC_CONTENT;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use BSIK_DYNAMIC_CONTENT\GetMeta;
-use BSIK_DYNAMIC_CONTENT\ProcessBlocks;
+use BSZYK_DYNAMIC_CONTENT\GetMeta;
+use BSZYK_DYNAMIC_CONTENT\ProcessBlocks;
 
 define( 'DYNAMIC_CONTENT_VERSION', '0.2.0' );
 
@@ -56,7 +56,7 @@ class Dynamic_Content {
 	 */
 	public function enqueue_assets() {
 		wp_enqueue_script(
-			'bsik-dynamic-content-scripts',
+			'bszyk-dynamic-content-scripts',
 			plugins_url( 'build/index.js', __FILE__ ),
 			array( 'wp-plugins', 'wp-edit-post', 'wp-i18n', 'wp-element', 'wp-i18n', 'wp-data' ),
 			DYNAMIC_CONTENT_VERSION,

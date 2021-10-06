@@ -1,5 +1,5 @@
 {
-    "name": "bsik/dynamic-content",
+    "name": "bszyk/dynamic-content",
     "description": "Dynamic Content for Gutenberg.",
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -11,7 +11,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-          "BSIK_DYNAMIC_CONTENT\\": "inc/"
+          "BSZYK_DYNAMIC_CONTENT\\": "inc/"
         }
       }
 }

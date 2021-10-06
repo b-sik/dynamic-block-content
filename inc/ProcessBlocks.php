@@ -2,16 +2,16 @@
 /**
  * Process blocks serverside.
  *
- * @package bsik-dynamic-content
+ * @package bszyk-dynamic-content
  */
 
-namespace BSIK_DYNAMIC_CONTENT;
+namespace BSZYK_DYNAMIC_CONTENT;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use BSIK_DYNAMIC_CONTENT\Utilities;
+use BSZYK_DYNAMIC_CONTENT\Utilities;
 
 /**
  * Process blocks.

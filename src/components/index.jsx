@@ -9,11 +9,11 @@ import UserMetaOptions from './UserMetaOptions.jsx';
 const DynamicContentPlugin = () => {
   return (
     <>
-      <PluginSidebarMoreMenuItem target='bsik-dynamic-content'>
+      <PluginSidebarMoreMenuItem target='bszyk-dynamic-content'>
         {__('Dynamic Content', 'ea-plugins')}
       </PluginSidebarMoreMenuItem>
       <PluginSidebar
-        name='bsik-dynamic-content'
+        name='bszyk-dynamic-content'
         title={__('Dynamic Content', 'ea-plugins')}
       >
         <PostMetaOptions />

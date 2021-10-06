@@ -2,10 +2,10 @@
 /**
  * Get meta.
  *
- * @package bsik-dynamic-content
+ * @package bszyk-dynamic-content
  */
 
-namespace BSIK_DYNAMIC_CONTENT;
+namespace BSZYK_DYNAMIC_CONTENT;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,7 +26,7 @@ class GetMeta {
 	 */
 	public function localize() {
 		wp_localize_script(
-			'bsik-dynamic-content-scripts',
+			'bszyk-dynamic-content-scripts',
 			'dynamicContent',
 			array(
 				'postMeta' => $this->post(),

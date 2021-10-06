@@ -31,7 +31,7 @@ const addMetaAttsToBlocks = (settings, name) => {
 
 addFilter(
   'blocks.registerBlockType',
-  'bsik/dynamic-content/add-meta-atts-to-blocks',
+  'bszyk/dynamic-content/add-meta-atts-to-blocks',
   addMetaAttsToBlocks
 );
 
@@ -67,7 +67,7 @@ const updateBlocksInEditorOnLoad = (attributes, settings, innerHTML) => {
 
 addFilter(
   'blocks.getBlockAttributes',
-  'bsik/dynamic-content/update-blocks-in-editor-on-load',
+  'bszyk/dynamic-content/update-blocks-in-editor-on-load',
   updateBlocksInEditorOnLoad
 );
 
@@ -112,6 +112,6 @@ const updateBlockContent = (element, settings, atts) => {
 
 addFilter(
   'blocks.getSaveElement',
-  'bsik/dynamic-content/update-block-content',
+  'bszyk/dynamic-content/update-block-content',
   updateBlockContent
 );

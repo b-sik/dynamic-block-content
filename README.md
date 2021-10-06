@@ -1,4 +1,4 @@
-# bsik-dynamic-content
+# bszyk-dynamic-content
 Dynamic content for WordPress Editor (aka Gutenberg) blocks.
 ```
 npm install && composer install
