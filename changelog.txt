@@ -1,0 +1,6 @@
+
+= 0.1.0 =
+* prototype
+
+= 0.2.0 =
+* dynamic text for paragraph, heading, and verse core blocks

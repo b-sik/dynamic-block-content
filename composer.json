@@ -1,0 +1,17 @@
+{
+    "name": "bsik/dynamic-content",
+    "description": "Dynamic Content for Gutenberg.",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Brian Siklinski",
+            "email": "bsyzk.codes@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+          "BSIK_DYNAMIC_CONTENT\\": "inc/"
+        }
+      }
+}
