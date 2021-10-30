@@ -126,6 +126,10 @@ addFilter(
  */
 const withToolbarIcon = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
+    if (!ALLOWED_BLOCKS.includes(props.name)) {
+      return <BlockEdit {...props} />;
+    }
+
     return (
       <>
         <BlockEdit {...props} />
