@@ -1,5 +1,7 @@
 import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
 import { cloneElement, Children } from '@wordpress/element';
+import { BlockControls, AlignmentToolbar } from '@wordpress/block-editor' 
 import {
   ALLOWED_BLOCKS,
   THE_DYNAMIC_CONTENT_STRING,
@@ -114,4 +116,27 @@ addFilter(
   'blocks.getSaveElement',
   'bszyk/dynamic-content/update-block-content',
   updateBlockContent
+);
+
+
+const withToolbarIcon = createHigherOrderComponent(
+  ( BlockEdit ) => {
+      return ( props ) => {
+          return (
+            <>
+              <BlockEdit {...props} />
+              <BlockControls>
+                <p>Test</p>
+              </BlockControls>
+            </>
+          );
+      };
+  },
+  'withToolbarIcon'
+);
+
+addFilter(
+  'editor.BlockEdit',
+  'bszyk/dynamic-content/with-toolbar-icon',
+  withToolbarIcon
 );
