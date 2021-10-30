@@ -1,7 +1,8 @@
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { cloneElement, Children } from '@wordpress/element';
-import { BlockControls, AlignmentToolbar } from '@wordpress/block-editor' 
+import { BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import {
   ALLOWED_BLOCKS,
   THE_DYNAMIC_CONTENT_STRING,
@@ -53,7 +54,7 @@ const updateBlocksInEditorOnLoad = (attributes, settings, innerHTML) => {
   const metaKey = attributes['dc_metakey'];
 
   // check if the key still exists.
-  if ( !Object.keys(postMeta).includes(metaKey) ) {
+  if (!Object.keys(postMeta).includes(metaKey)) {
     attributes['dc_metakey'] = '';
     return attributes;
   }
@@ -118,22 +119,29 @@ addFilter(
   updateBlockContent
 );
 
-
-const withToolbarIcon = createHigherOrderComponent(
-  ( BlockEdit ) => {
-      return ( props ) => {
-          return (
-            <>
-              <BlockEdit {...props} />
-              <BlockControls>
-                <p>Test</p>
-              </BlockControls>
-            </>
-          );
-      };
-  },
-  'withToolbarIcon'
-);
+/**
+ * Add Inspector Controls and Toolbar Button to allowed blocks.
+ *
+ * @returns {Object} Processed element.
+ */
+const withToolbarIcon = createHigherOrderComponent((BlockEdit) => {
+  return (props) => {
+    return (
+      <>
+        <BlockEdit {...props} />
+        <BlockControls>
+          <ToolbarGroup>
+            <ToolbarButton
+              icon='database'
+              label='Toggle Dynamic Content'
+              onClick={() => console.log('click')}
+            />
+          </ToolbarGroup>
+        </BlockControls>
+      </>
+    );
+  };
+}, 'withToolbarIcon');
 
 addFilter(
   'editor.BlockEdit',
