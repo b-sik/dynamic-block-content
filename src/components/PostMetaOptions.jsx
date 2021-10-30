@@ -3,6 +3,7 @@ import {
   SelectControl,
   PanelBody,
   PanelRow,
+  ToggleControl,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -90,6 +91,7 @@ const PostMetaOptions = () => {
    * @param {Object} block Selected block.
    * @param {string} key Content.
    * @param {string} value Value.
+   * @returns {void}
    */
   const updateSelectedBlock = (block, key, value) => {
     if (null === block || !ALLOWED_BLOCKS.includes(block.name)) {
@@ -109,6 +111,15 @@ const PostMetaOptions = () => {
         dc_metakey: key,
       });
     }
+  };
+
+  /**
+   * Clear dynamic content from selected block.
+   * @param {Object} block Selected block.
+   * @returns {void}
+   */
+  const removeDynamicContentSelectedBlock = (block) => {
+    updateSelectedBlock(block, 'delete', 'delete');
   };
 
   /**
@@ -137,12 +148,41 @@ const PostMetaOptions = () => {
     setPostMetaKey(metaKey);
   }, [selectedBlock]);
 
+  /**
+   * Toggle control.
+   */
+  const [hasDynamicContent, setHasDynamicContent] = useState(false);
+
+  useEffect(() => {
+    hasDynamicContent
+      ? updateSelectedBlock(
+          selectedBlock,
+          selectedPostMetaKey,
+          selectedPostMetaValue
+        )
+      : removeDynamicContentSelectedBlock(selectedBlock);
+  }, [hasDynamicContent, selectedPostMetaKey, selectedPostMetaValue]);
+
   return (
     <PanelBody
       title={__('Dynamic Content', 'bszyk-plugins-dc')}
       initialOpen={false}
     >
-      {selectedBlock ? (
+      <PanelRow>
+        <ToggleControl
+          label={__('Toggle Dynamic Content on/off', 'bszyk-plugins-dc')}
+          help={
+            hasDynamicContent
+              ? __('Dynamic Content enabled.', 'bszyk-plugins-dc')
+              : __('Dynamic Content disabled.', 'bszyk-plugins-dc')
+          }
+          checked={hasDynamicContent}
+          onChange={() => {
+            setHasDynamicContent(!hasDynamicContent);
+          }}
+        />
+      </PanelRow>
+      {hasDynamicContent && (
         <>
           <PanelRow>
             <SelectControl
@@ -157,18 +197,15 @@ const PostMetaOptions = () => {
               disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
             />
           </PanelRow>
-          {selectedPostMetaKey && (
-            <PanelRow>
-              <SelectControl
-                label={__('Select value:', 'bszyk-plugins-dc')}
-                value={selectedPostMetaValue}
-                onChange={(value) => setPostMetaValue(value)}
-                options={postMetaValueOptions()}
-                disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
-              />
-            </PanelRow>
-          )}
-
+          <PanelRow>
+            <SelectControl
+              label={__('Select value:', 'bszyk-plugins-dc')}
+              value={selectedPostMetaValue}
+              onChange={(value) => setPostMetaValue(value)}
+              options={postMetaValueOptions()}
+              disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
+            />
+          </PanelRow>
           <PanelRow>
             <Button
               isSecondary
@@ -189,17 +226,13 @@ const PostMetaOptions = () => {
           <PanelRow>
             <Button
               isDestructive
-              onClick={() =>
-                updateSelectedBlock(selectedBlock, 'delete', 'delete')
-              }
+              onClick={() => removeDynamicContentSelectedBlock(selectedBlock)}
               disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
             >
               {__('Remove Dynamic Content', 'bszyk-plugins-dc')}
             </Button>
           </PanelRow>
         </>
-      ) : (
-        <PanelRow>{__('Please select a block', 'bszyk-plugins-dc')}</PanelRow>
       )}
     </PanelBody>
   );
