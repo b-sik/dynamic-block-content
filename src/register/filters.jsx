@@ -1,4 +1,5 @@
 import { addFilter } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { cloneElement, Children } from '@wordpress/element';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
@@ -8,6 +9,7 @@ import {
   THE_DYNAMIC_CONTENT_STRING,
 } from '../../constants.json';
 import { META_KEY_ATTS, ALLOWED_BLOCKS_SETTINGS } from '../config';
+import PostMetaOptions from '../components/PostMetaOptions.jsx';
 
 /**
  * Meta global.
@@ -124,7 +126,7 @@ addFilter(
  *
  * @returns {Object} Processed element.
  */
-const withToolbarIcon = createHigherOrderComponent((BlockEdit) => {
+const withToolbarAndControls = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
     if (!ALLOWED_BLOCKS.includes(props.name)) {
       return <BlockEdit {...props} />;
@@ -137,18 +139,21 @@ const withToolbarIcon = createHigherOrderComponent((BlockEdit) => {
           <ToolbarGroup>
             <ToolbarButton
               icon='database'
-              label='Toggle Dynamic Content'
+              label={__('Toggle Dynamic Content', 'bszyk-plugins-dc')}
               onClick={() => console.log('click')}
             />
           </ToolbarGroup>
+          <InspectorControls>
+            <PostMetaOptions />
+          </InspectorControls>
         </BlockControls>
       </>
     );
   };
-}, 'withToolbarIcon');
+}, 'withToolbarAndControls');
 
 addFilter(
   'editor.BlockEdit',
   'bszyk/dynamic-content/with-toolbar-icon',
-  withToolbarIcon
+  withToolbarAndControls
 );

@@ -5,6 +5,7 @@
  * Description: Easily display dynamic metadata within WordPress editor blocks.
  * Author: Brian Siklinski
  * Version: 0.2.0
+ * Text Domain: bszyk-plugins-dc
  *
  * @package bszyk-dynamic-content
  */

@@ -18,9 +18,12 @@ const PostMetaOptions = () => {
 
   if (0 === postMeta.length) {
     return (
-      <PanelBody title='Post Meta Options' initialOpen={true}>
+      <PanelBody
+        title={__('Dynamic Content', 'bszyk-plugins-dc')}
+        initialOpen={true}
+      >
         <PanelRow>
-          <p>{__('No post meta found!', 'ea-plugins')}</p>
+          <p>{__('No post meta found!', 'bszyk-plugins-dc')}</p>
         </PanelRow>
       </PanelBody>
     );
@@ -135,16 +138,19 @@ const PostMetaOptions = () => {
   }, [selectedBlock]);
 
   return (
-    <PanelBody title='Post Meta Options' initialOpen={true}>
+    <PanelBody
+      title={__('Dynamic Content', 'bszyk-plugins-dc')}
+      initialOpen={false}
+    >
       {selectedBlock ? (
         <>
           <PanelRow>
             <SelectControl
-              label={__('Select post meta key:', 'ea-plugins')}
+              label={__('Select post meta key:', 'bszyk-plugins-dc')}
               value={
                 selectedPostMetaKey
                   ? selectedPostMetaKey
-                  : __('No post meta found!', 'ea-plugins')
+                  : __('No post meta found!', 'bszyk-plugins-dc')
               }
               onChange={(key) => setPostMetaKey(key)}
               options={postMetaKeyOptions()}
@@ -154,7 +160,7 @@ const PostMetaOptions = () => {
           {selectedPostMetaKey && (
             <PanelRow>
               <SelectControl
-                label={__('Select value:', 'ea-plugins')}
+                label={__('Select value:', 'bszyk-plugins-dc')}
                 value={selectedPostMetaValue}
                 onChange={(value) => setPostMetaValue(value)}
                 options={postMetaValueOptions()}
@@ -188,12 +194,12 @@ const PostMetaOptions = () => {
               }
               disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
             >
-              {__('Remove Dynamic Content')}
+              {__('Remove Dynamic Content', 'bszyk-plugins-dc')}
             </Button>
           </PanelRow>
         </>
       ) : (
-        <PanelRow>{__('Please select a block', 'ea-plugins')}</PanelRow>
+        <PanelRow>{__('Please select a block', 'bszyk-plugins-dc')}</PanelRow>
       )}
     </PanelBody>
   );
