@@ -127,9 +127,9 @@ addFilter(
 );
 
 /**
- * Add Inspector Controls and Toolbar Button to allowed blocks.
+ * Add Inspector Controls and Toolbars to allowed blocks.
  */
-const withToolbarAndControls = createHigherOrderComponent((BlockEdit) => {
+const withToolbarsAndControls = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
     if (!ALLOWED_BLOCKS.includes(props.name)) {
       return <BlockEdit {...props} />;
@@ -139,24 +139,15 @@ const withToolbarAndControls = createHigherOrderComponent((BlockEdit) => {
       <>
         <BlockEdit {...props} />
         <BlockControls>
-          <ToolbarGroup>
-            <ToolbarButton
-              icon='database'
-              label={__('Toggle Dynamic Content', 'bszyk-plugins-dc')}
-              onClick={() => console.log('click')}
-            />
-          </ToolbarGroup>
-          <InspectorControls>
             <PostMetaControls />
-          </InspectorControls>
         </BlockControls>
       </>
     );
   };
-}, 'withToolbarAndControls');
+}, 'withToolbarsAndControls');
 
 addFilter(
   'editor.BlockEdit',
   'bszyk/dynamic-content/with-toolbar-icon',
-  withToolbarAndControls
+  withToolbarsAndControls
 );
