@@ -206,32 +206,6 @@ const PostMetaOptions = () => {
               disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
             />
           </PanelRow>
-          <PanelRow>
-            <Button
-              isSecondary
-              onClick={() =>
-                updateSelectedBlock(
-                  selectedBlock,
-                  selectedPostMetaKey,
-                  selectedPostMetaValue
-                )
-              }
-              disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
-            >
-              {selectedBlock
-                ? `Update ${selectedBlock.name} block`
-                : 'No block selected'}
-            </Button>
-          </PanelRow>
-          <PanelRow>
-            <Button
-              isDestructive
-              onClick={() => removeDynamicContentSelectedBlock(selectedBlock)}
-              disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
-            >
-              {__('Remove Dynamic Content', 'bszyk-plugins-dc')}
-            </Button>
-          </PanelRow>
         </>
       )}
     </PanelBody>
