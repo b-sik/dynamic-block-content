@@ -9,7 +9,7 @@ import {
   THE_DYNAMIC_CONTENT_STRING,
 } from '../../constants.json';
 import { META_KEY_ATTS, ALLOWED_BLOCKS_SETTINGS } from '../config';
-import PostMetaOptions from '../components/PostMetaOptions.jsx';
+import PostMetaControls from '../components/PostMetaControls.jsx';
 
 /**
  * Meta global.
@@ -22,9 +22,9 @@ const { postMeta } = dynamicContent;
  * @param {Object} settings Block settings.
  * @param {string} name Block name.
  *
- * @returns {Object} Block settings.
+ * @returns {Object} Updated block settings.
  */
-const addMetaAttsToBlocks = (settings, name) => {
+const withMetaAtts = (settings, name) => {
   if (!ALLOWED_BLOCKS.includes(name)) {
     return settings;
   }
@@ -36,14 +36,19 @@ const addMetaAttsToBlocks = (settings, name) => {
 
 addFilter(
   'blocks.registerBlockType',
-  'bszyk/dynamic-content/add-meta-atts-to-blocks',
-  addMetaAttsToBlocks
+  'bszyk/dynamic-content/with-meta-atts',
+  withMetaAtts
 );
 
 /**
  * Keep blocks in editor updated if a meta value has since changed.
+ *
+ * @param {Object} attributes Block attributes. 
+ * @param {Object} settings Block settings.
+ *
+ * @returns {Object} Updated attributes.
  */
-const updateBlocksInEditorOnLoad = (attributes, settings, innerHTML) => {
+const withCurrentMeta = (attributes, settings) => {
   if (
     !ALLOWED_BLOCKS.includes(settings.name) ||
     'undefined' === typeof attributes['dc_metakey'] ||
@@ -72,8 +77,8 @@ const updateBlocksInEditorOnLoad = (attributes, settings, innerHTML) => {
 
 addFilter(
   'blocks.getBlockAttributes',
-  'bszyk/dynamic-content/update-blocks-in-editor-on-load',
-  updateBlocksInEditorOnLoad
+  'bszyk/dynamic-content/with-current-meta',
+  withCurrentMeta
 );
 
 /**
@@ -84,11 +89,11 @@ addFilter(
  *
  * @param {Object} element Element.
  * @param {Object} settings Block settings.
- * @param {Object} name Block attributes.
- *
- * @returns {Object} Processed element.
+ * @param {Object} atts Block attributes.
+ * 
+ * @returns {Object} Element with generic .
  */
-const updateBlockContent = (element, settings, atts) => {
+const withDynamicContent = (element, settings, atts) => {
   if (
     !ALLOWED_BLOCKS.includes(settings.name) ||
     'undefined' === typeof atts['dc_metakey'] ||
@@ -117,14 +122,12 @@ const updateBlockContent = (element, settings, atts) => {
 
 addFilter(
   'blocks.getSaveElement',
-  'bszyk/dynamic-content/update-block-content',
-  updateBlockContent
+  'bszyk/dynamic-content/with-dynamic-content',
+  withDynamicContent
 );
 
 /**
  * Add Inspector Controls and Toolbar Button to allowed blocks.
- *
- * @returns {Object} Processed element.
  */
 const withToolbarAndControls = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
@@ -144,7 +147,7 @@ const withToolbarAndControls = createHigherOrderComponent((BlockEdit) => {
             />
           </ToolbarGroup>
           <InspectorControls>
-            <PostMetaOptions />
+            <PostMetaControls />
           </InspectorControls>
         </BlockControls>
       </>

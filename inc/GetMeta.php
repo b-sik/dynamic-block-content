@@ -41,6 +41,10 @@ class GetMeta {
 	public function post() {
 		global $post;
 
+		if ( null === $post ) {
+			return;
+		}
+
 		$post_meta = get_post_meta( $post->ID );
 
 		// filter out private keys.

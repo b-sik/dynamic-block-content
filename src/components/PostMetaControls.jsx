@@ -1,5 +1,4 @@
 import {
-  Button,
   SelectControl,
   PanelBody,
   PanelRow,
@@ -11,7 +10,7 @@ import { useSelect, dispatch } from '@wordpress/data';
 import { ALLOWED_BLOCKS } from '../../constants.json';
 import { ALLOWED_BLOCKS_SETTINGS } from '../config';
 
-const PostMetaOptions = () => {
+const PostMetaControls = () => {
   /**
    * Meta global.
    */
@@ -212,4 +211,4 @@ const PostMetaOptions = () => {
   );
 };
 
-export default PostMetaOptions;
+export default PostMetaControls;

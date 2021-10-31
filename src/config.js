@@ -1,4 +1,4 @@
-/** Custom attributes to add to core blocks */
+/** Attributes to add to allowed blocks */
 export const META_KEY_ATTS = {
   dc_metakey: {
     type: 'string',
