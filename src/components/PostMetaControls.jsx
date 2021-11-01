@@ -11,8 +11,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useSelect, dispatch } from '@wordpress/data';
 import { startCase } from 'lodash';
-import { ALLOWED_BLOCKS } from '../../constants.json';
-import { ALLOWED_BLOCKS_SETTINGS } from '../config';
+import { ALLOWED_BLOCKS, ALLOWED_BLOCKS_SETTINGS } from '../config';
 
 const PostMetaControls = () => {
   /**

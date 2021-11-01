@@ -6,9 +6,12 @@ import { BlockControls } from '@wordpress/block-editor';
 import {
   ALLOWED_BLOCKS,
   THE_DYNAMIC_CONTENT_STRING,
-} from '../../constants.json';
-import { META_KEY_ATTS, ALLOWED_BLOCKS_SETTINGS } from '../config';
+  META_KEY_ATTS,
+  ALLOWED_BLOCKS_SETTINGS,
+} from '../config';
 import PostMetaControls from '../components/PostMetaControls.jsx';
+
+console.log({ALLOWED_BLOCKS, THE_DYNAMIC_CONTENT_STRING})
 
 /**
  * Meta global.
@@ -42,7 +45,7 @@ addFilter(
 /**
  * Keep blocks in editor updated if a meta value has since changed.
  *
- * @param {Object} attributes Block attributes. 
+ * @param {Object} attributes Block attributes.
  * @param {Object} settings Block settings.
  *
  * @returns {Object} Updated attributes.
@@ -89,7 +92,7 @@ addFilter(
  * @param {Object} element Element.
  * @param {Object} settings Block settings.
  * @param {Object} atts Block attributes.
- * 
+ *
  * @returns {Object} Element with generic .
  */
 const withDynamicContent = (element, settings, atts) => {
@@ -138,7 +141,7 @@ const withToolbarsAndControls = createHigherOrderComponent((BlockEdit) => {
       <>
         <BlockEdit {...props} />
         <BlockControls>
-            <PostMetaControls />
+          <PostMetaControls />
         </BlockControls>
       </>
     );
