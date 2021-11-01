@@ -6,8 +6,7 @@ import {
   ToolbarButton,
   ToolbarGroup,
 } from '@wordpress/components';
-import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-
+import { InspectorControls } from '@wordpress/block-editor';
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useSelect, dispatch } from '@wordpress/data';
@@ -66,7 +65,7 @@ const PostMetaControls = () => {
 
   /**
    * Create options for post meta values.
-   * @returns {Array<Object>}
+   * @returns {Array<Object>|null}
    */
   const postMetaValueOptions = () => {
     let options = [];
@@ -186,12 +185,15 @@ const PostMetaControls = () => {
   const [hasDynamicContent, setHasDynamicContent] = useState(null);
 
   /**
-   *
+   * Set initial `hasDynamicContent` state for selected block.
    */
   useEffect(() => {
     setHasDynamicContent(isDynamicContentBlock(selectedBlock));
   }, []);
 
+  /**
+   * Update or remove dynamic content attribute on selected block.
+   */
   useEffect(() => {
     if (null === hasDynamicContent) {
       return;
@@ -211,8 +213,13 @@ const PostMetaControls = () => {
       <ToolbarGroup>
         <ToolbarButton
           icon='database'
-          label={__('Toggle Dynamic Content', 'bszyk-plugins-dc')}
+          label={
+            hasDynamicContent
+              ? __('Dynamic Content enabled', 'bszyk-plugins-dc')
+              : __('Enable Dynamic Content', 'bszyk-plugins-dc')
+          }
           onClick={() => setHasDynamicContent(!hasDynamicContent)}
+          isPressed={hasDynamicContent}
         />
       </ToolbarGroup>
       <InspectorControls>
@@ -238,7 +245,7 @@ const PostMetaControls = () => {
             <>
               <PanelRow>
                 <SelectControl
-                  label={__('Select post meta key:', 'bszyk-plugins-dc')}
+                  label={__('Select post meta key to display:', 'bszyk-plugins-dc')}
                   value={
                     selectedPostMetaKey
                       ? selectedPostMetaKey
@@ -249,15 +256,17 @@ const PostMetaControls = () => {
                   disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
                 />
               </PanelRow>
-              <PanelRow>
-                <SelectControl
-                  label={__('Select value:', 'bszyk-plugins-dc')}
-                  value={selectedPostMetaValue}
-                  onChange={(value) => setPostMetaValue(value)}
-                  options={postMetaValueOptions()}
-                  disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
-                />
-              </PanelRow>
+              {postMetaValueOptions().length > 1 && (
+                <PanelRow>
+                  <SelectControl
+                    label={__('Select value:', 'bszyk-plugins-dc')}
+                    value={selectedPostMetaValue}
+                    onChange={(value) => setPostMetaValue(value)}
+                    options={postMetaValueOptions()}
+                    disabled={!ALLOWED_BLOCKS.includes(selectedBlock.name)}
+                  />
+                </PanelRow>
+              )}
             </>
           )}
         </PanelBody>

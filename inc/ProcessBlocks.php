@@ -11,8 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use BSZYK_DYNAMIC_CONTENT\Utilities;
-
 /**
  * Process blocks.
  */

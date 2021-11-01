@@ -2,8 +2,7 @@ import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { cloneElement, Children } from '@wordpress/element';
-import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
+import { BlockControls } from '@wordpress/block-editor';
 import {
   ALLOWED_BLOCKS,
   THE_DYNAMIC_CONTENT_STRING,
