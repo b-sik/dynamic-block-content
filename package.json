@@ -17,6 +17,7 @@
     "@wordpress/edit-post": "^4.0.0",
     "@wordpress/element": "^3.0.0",
     "@wordpress/i18n": "^4.0.0",
-    "@wordpress/plugins": "^3.0.0"
+    "@wordpress/plugins": "^3.0.0",
+    "lodash": "^4.17.21"
   }
 }
