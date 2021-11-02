@@ -11,8 +11,6 @@ import {
 } from '../config';
 import PostMetaControls from '../components/PostMetaControls.jsx';
 
-console.log({ALLOWED_BLOCKS, THE_DYNAMIC_CONTENT_STRING})
-
 /**
  * Meta global.
  */
@@ -45,36 +43,51 @@ addFilter(
 /**
  * Keep blocks in editor updated if a meta value has since changed.
  *
- * @param {Object} attributes Block attributes.
+ * @param {Object} atts Block attributes.
  * @param {Object} settings Block settings.
  *
  * @returns {Object} Updated attributes.
  */
-const withCurrentMeta = (attributes, settings) => {
+const withCurrentMeta = (atts, settings) => {
   if (
     !ALLOWED_BLOCKS.includes(settings.name) ||
-    'undefined' === typeof attributes['dc_metakey'] ||
-    null === attributes['dc_metakey']
+    'undefined' === typeof atts['dc_metakey'] ||
+    null === atts['dc_metakey'] ||
+    false === atts['dc_enabled']
   ) {
-    return attributes;
+    return atts;
   }
 
   // grab meta key.
-  const metaKey = attributes['dc_metakey'];
-
-  // check if the key still exists.
-  if (!Object.keys(postMeta).includes(metaKey)) {
-    attributes['dc_metakey'] = '';
-    return attributes;
-  }
+  const metaKey = atts['dc_metakey'];
 
   // get the content key for the block.
   const { contentAttKey } = ALLOWED_BLOCKS_SETTINGS[settings.name];
 
-  // update the content.
-  attributes[contentAttKey] = postMeta[metaKey];
+  // check if key still exists.
+  if ('undefined' !== typeof postMeta[metaKey]) {
+    // get meta value.
+    const metaValue = postMeta[metaKey][0];
 
-  return attributes;
+    // check if the value is empty or not.
+    if ('' !== metaValue) {
+      // update with current value.
+      atts[contentAttKey] = metaValue;
+    } else {
+      // if empty, give a warning.
+      atts[contentAttKey] =
+        '[[Dynamic Content Warning: Empty metadata key.]]';
+    }
+  } else {
+    // error.
+    atts[
+      contentAttKey
+    ] = `[[Dynamic Content Error: Metadata key \`${metaKey}\` no longer exists. Dynamic Content has been disabled for this block.]]`;
+    atts['dc_metakey'] = '';
+    atts['dc_enabled'] = false;
+  }
+
+  return atts;
 };
 
 addFilter(
@@ -100,7 +113,7 @@ const withDynamicContent = (element, settings, atts) => {
     !ALLOWED_BLOCKS.includes(settings.name) ||
     'undefined' === typeof atts['dc_metakey'] ||
     null === atts['dc_metakey'] ||
-    '' === atts['dc_metakey']
+    false === atts['dc_enabled']
   ) {
     return element;
   }
@@ -113,7 +126,9 @@ const withDynamicContent = (element, settings, atts) => {
   // update the value of the text node.
   // all the cloning is necessary because `props` is read only.
   const newChildren = Children.map(element.props.children, (child) =>
-    cloneElement(child, { value: THE_DYNAMIC_CONTENT_STRING })
+    cloneElement(child, {
+      value: THE_DYNAMIC_CONTENT_STRING,
+    })
   )[0];
 
   // add the updated child into a clone of the element.

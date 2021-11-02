@@ -43,21 +43,34 @@ class ProcessBlocks {
 			// check if it's in the allow list.
 			if ( isset( $block['blockName'] ) && in_array( $block['blockName'], ALLOWED_BLOCKS, true ) ) {
 				// check if it's a dynamic content block.
-				if ( isset( $block['attrs']['dc_metakey'] ) && ! empty( $block['attrs']['dc_metakey'] ) ) {
+				if ( isset( $block['attrs']['dc_metakey'] ) && isset( $block['attrs']['dc_enabled'] ) && true === $block['attrs']['dc_enabled'] ) {
 					// define the meta key.
 					$meta_key = $block['attrs']['dc_metakey'];
-
-					// get the current meta value.
-					$meta_value = get_post_meta( $post->ID, $meta_key, true );
 
 					// grab the inner content.
 					$inner_content = $block['innerContent'][0];
 
-					// replace generic string with current meta.
-					$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, $meta_value, $inner_content );
+					if ( ! empty( $meta_key ) && metadata_exists( 'post', $post->ID, $meta_key ) ) {
+						// get the current meta value.
+						$meta_value = get_post_meta( $post->ID, $meta_key, true );
 
-					// update the block.
-					$block['innerContent'][0] = $inner_content;
+						if ( empty( $meta_value ) ) {
+							$meta_value = '[[Dynamic Content Warning: Value of `' . $meta_key . '` is empty.]]';
+						}
+
+						// replace generic string with current meta.
+						$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, $meta_value, $inner_content );
+					} elseif ( empty( $meta_key ) ) {
+						// if empty, replace with error.
+						// @TODO settings option to turn debugging messages on/off
+						$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Warning: Metadata key is empty.]]', $inner_content );
+					} elseif ( ! metadata_exists( 'post', $post->ID, $meta_key ) ) {
+						$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Error: Metadata key `' . $meta_key . '` no longer exists.]]', $inner_content );
+					} else {
+						$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Error: Congrats! 🎉 You found a new error!]]', $inner_content );
+					}
+						// update the block.
+						$block['innerContent'][0] = $inner_content;
 				}
 			}
 		}

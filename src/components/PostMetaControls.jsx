@@ -40,11 +40,14 @@ const PostMetaControls = () => {
             label={__('Enable Dynamic Content', 'bszyk-plugins-dc')}
             icon='database'
             onClick={() =>
-              dispatch('core/notices').createWarningNotice('No post meta found! 🧐', {
-                type: 'snackbar',
-                isDismissible: true,
-                speak: true
-              })
+              dispatch('core/notices').createWarningNotice(
+                'No post meta found! 🧐',
+                {
+                  type: 'snackbar',
+                  isDismissible: true,
+                  speak: true,
+                }
+              )
             }
           />
         </ToolbarGroup>
@@ -120,17 +123,23 @@ const PostMetaControls = () => {
       return;
     }
 
+    if ('' === value) {
+      value = '[[Dynamic Content Warning: Empty metadata key.]]';
+    }
+
     const { contentAttKey } = ALLOWED_BLOCKS_SETTINGS[block.name];
 
     if ('delete' === key && 'delete' === value) {
       dispatch('core/block-editor').updateBlockAttributes(block.clientId, {
         [contentAttKey]: '',
         dc_metakey: '',
+        dc_enabled: false,
       });
     } else {
       dispatch('core/block-editor').updateBlockAttributes(block.clientId, {
         [contentAttKey]: value,
         dc_metakey: key,
+        dc_enabled: true,
       });
     }
   };
@@ -185,12 +194,14 @@ const PostMetaControls = () => {
     if (
       'undefined' === typeof attributes['dc_metakey'] ||
       null === attributes['dc_metakey'] ||
-      '' === attributes['dc_metakey']
+      '' === attributes['dc_metakey'] ||
+      false === attributes['dc_enabled']
     ) {
       return false;
     } else if (
-      'string' === typeof attributes['dc_metakey'] &&
-      attributes['dc_metakey'].length > 0
+      ('string' === typeof attributes['dc_metakey'] &&
+        attributes['dc_metakey'].length > 0) ||
+      true === attributes['dc_enabled']
     ) {
       return true;
     }
@@ -212,7 +223,11 @@ const PostMetaControls = () => {
    * Update or remove dynamic content attribute on selected block.
    */
   useEffect(() => {
-    if (null === hasDynamicContent) {
+    if (
+      null === hasDynamicContent ||
+      (false === hasDynamicContent &&
+        false === isDynamicContentBlock(selectedBlock))
+    ) {
       return;
     }
 
