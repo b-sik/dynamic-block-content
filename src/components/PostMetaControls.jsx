@@ -24,14 +24,16 @@ const PostMetaControls = () => {
    */
   if (0 === postMeta.length) {
     return (
-      <PanelBody
-        title={__('Dynamic Content', 'bszyk-plugins-dc')}
-        initialOpen={true}
-      >
-        <PanelRow>
-          <p>{__('No post meta found!', 'bszyk-plugins-dc')}</p>
-        </PanelRow>
-      </PanelBody>
+      <InspectorControls>
+        <PanelBody
+          title={__('Dynamic Content', 'bszyk-plugins-dc')}
+          initialOpen={true}
+        >
+          <PanelRow>
+            <p>{__('No post meta found! 🧐', 'bszyk-plugins-dc')}</p>
+          </PanelRow>
+        </PanelBody>
+      </InspectorControls>
     );
   }
 
@@ -245,7 +247,10 @@ const PostMetaControls = () => {
             <>
               <PanelRow>
                 <SelectControl
-                  label={__('Select post meta key to display:', 'bszyk-plugins-dc')}
+                  label={__(
+                    'Select post meta key to display:',
+                    'bszyk-plugins-dc'
+                  )}
                   value={
                     selectedPostMetaKey
                       ? selectedPostMetaKey
