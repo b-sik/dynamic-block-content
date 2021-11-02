@@ -30,7 +30,6 @@ class GetMeta {
 			'dynamicContent',
 			array(
 				'postMeta' => $this->post(),
-				'userMeta' => $this->user(),
 			)
 		);
 	}
@@ -57,16 +56,5 @@ class GetMeta {
 		);
 
 		return $post_meta;
-	}
-
-	/**
-	 * Get user meta.
-	 */
-	public function user() {
-		$current_user_id = get_current_user_id();
-
-		$user_meta = get_user_meta( $current_user_id );
-
-		return $user_meta;
 	}
 }
