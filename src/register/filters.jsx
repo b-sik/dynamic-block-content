@@ -76,7 +76,7 @@ const withCurrentMeta = (atts, settings) => {
 		} else {
 			// if empty, give a warning.
 			atts[contentAttKey] =
-				"[[Dynamic Content Warning: Empty metadata key.]]";
+				`[[Dynamic Content Warning: Value of \`${metaKey}\` is empty.]]`;
 		}
 	} else {
 		// error.

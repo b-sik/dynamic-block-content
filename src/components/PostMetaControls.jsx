@@ -131,7 +131,7 @@ const PostMetaControls = () => {
 		}
 
 		if ("" === value) {
-			value = "[[Dynamic Content Warning: Empty metadata key.]]";
+			value = `[[Dynamic Content Warning: Value of \`${selectedPostMetaKey}\` is empty.]]`;
 		}
 
 		const { contentAttKey } = ALLOWED_BLOCKS_SETTINGS[block.name];
