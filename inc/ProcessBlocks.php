@@ -2,7 +2,7 @@
 /**
  * Process blocks serverside.
  *
- * @package bszyk-dynamic-content
+ * @package Bszyk_Dynamic_Content
  */
 
 namespace BSZYK_DYNAMIC_CONTENT;
