@@ -24,16 +24,31 @@ const PostMetaControls = () => {
    */
   if (0 === postMeta.length) {
     return (
-      <InspectorControls>
-        <PanelBody
-          title={__('Dynamic Content', 'bszyk-plugins-dc')}
-          initialOpen={true}
-        >
-          <PanelRow>
-            <p>{__('No post meta found! 🧐', 'bszyk-plugins-dc')}</p>
-          </PanelRow>
-        </PanelBody>
-      </InspectorControls>
+      <>
+        <InspectorControls>
+          <PanelBody
+            title={__('Dynamic Content', 'bszyk-plugins-dc')}
+            initialOpen={true}
+          >
+            <PanelRow>
+              <p>{__('No post meta found! 🧐', 'bszyk-plugins-dc')}</p>
+            </PanelRow>
+          </PanelBody>
+        </InspectorControls>
+        <ToolbarGroup>
+          <ToolbarButton
+            label={__('Enable Dynamic Content', 'bszyk-plugins-dc')}
+            icon='database'
+            onClick={() =>
+              dispatch('core/notices').createWarningNotice('No post meta found! 🧐', {
+                type: 'snackbar',
+                isDismissible: true,
+                speak: true
+              })
+            }
+          />
+        </ToolbarGroup>
+      </>
     );
   }
 
