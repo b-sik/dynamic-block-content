@@ -1,18 +1,12 @@
-# ignore node dependency directories
-node_modules/
-
-# ignore log files and databases
-*.log
-*.sql
-*.sqlite
-
-# composer
-vendor/
-
-build/
-
 .DS_Store
-
+phpcs.xml
+phpunit.xml
+Thumbs.db
+wp-cli.local.yml
+node_modules/
+*.sql
+*.tar.gz
+*.zip
+vendor/
+build/
 _zip/
-
-Utilities.php

@@ -1,13 +1,19 @@
 <?php // phpcs:ignore
 /**
- * Plugin Name: Dynamic Content
- * Plugin URI: https://bszyk.dev
- * Description: Easily display dynamic metadata within WordPress editor blocks.
- * Author: Brian Siklinski
- * Version: 0.2.0
- * Text Domain: bszyk-plugins-dc
+ * Plugin Name:     Dynamic Content
+ * Plugin URI:      https://bszyk.dev
+ * Description:     Enable WordPress blocks to display dynamic data that auto-updates on the frontend of your site.
+ * Author:          Brian Siklinski
+ * Author URI:      https://bszyk.dev
+ * Text Domain:     bszyk-plugins-dc
+ * Domain Path:     /languages
+ * Version:         0.2.0
  *
- * @package bszyk-dynamic-content
+ * Requires at least: 4.5
+ * Tested up to: 5.8.1
+ * Requires PHP: 5.6
+ *
+ * @package         Bszyk_Dynamic_Content
  */
 
 namespace BSZYK_DYNAMIC_CONTENT;
