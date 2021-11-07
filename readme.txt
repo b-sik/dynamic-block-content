@@ -1,7 +1,7 @@
 === Dynamic Content for WordPress ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link:
-Tags: dynamic content, gutenberg, blocks, custom fields, frontend
+Contributors: bszyk
+Donate link: https://www.paypal.com/donate?business=QHL62AWL3PSMN&no_recurring=0&item_name=Self-taught+developer+trying+to+make+a+living.+Anything+and+everything+helps%2C+thank+you%21&currency_code=USD
+Tags: dynamic content, metadata, gutenberg, blocks, custom fields, frontend
 Requires at least: 4.5
 Tested up to: 5.8.1
 Requires PHP: 5.6
@@ -13,7 +13,7 @@ Enable WordPress blocks to display dynamic data that auto-updates on the fronten
 
 == Description ==
 
-Simply select a block in the WordPress editor, toggle on Dynamic Content, and select the post meta key that contains the value you'd like to display. If that value changes in your database, it will automatically reflect the change on the frontend of your site.
+Simply select a block in the WordPress editor, toggle on Dynamic Content, and select the custom field (aka post meta key) that contains the value you'd like to display. If that value changes in your database, it will automatically reflect the change on the frontend of your site.
 
 The following blocks are currently supported:
 * Paragraph
@@ -22,21 +22,17 @@ The following blocks are currently supported:
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Does this work with ACF (Advanced Custom Fields)? =
 
-An answer to that question.
+Absolutely! Works with regular custom fields or ACF.
 
-= What about foo bar? =
+= Can I have just a section of text dynamic? =
 
-Answer to foo bar dilemma.
+Not yet! Currently the dynamic value will take over the entire block.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. View of the editor with Dynamic Content enabled on a paragraph block.
 
 == Changelog ==
 
