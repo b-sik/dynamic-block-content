@@ -270,12 +270,12 @@ const PostMetaControls = () => {
 			<InspectorControls>
 				<PanelBody
 					title={__("Dynamic Content", "bszyk-plugins-dc")}
-					initialOpen={hasDynamicContent}
+					initialOpen={true}
 				>
 					<PanelRow>
 						<ToggleControl
 							label={__(
-								"Toggle Dynamic Content on/off",
+								"Toggle Dynamic Content",
 								"bszyk-plugins-dc"
 							)}
 							help={
@@ -303,14 +303,7 @@ const PostMetaControls = () => {
 										"Select post meta key to display:",
 										"bszyk-plugins-dc"
 									)}
-									value={
-										selectedPostMetaKey
-											? selectedPostMetaKey
-											: __(
-													"No post meta found!",
-													"bszyk-plugins-dc"
-											  )
-									}
+									value={selectedPostMetaKey}
 									onChange={(key) => setPostMetaKey(key)}
 									options={postMetaKeyOptions()}
 									disabled={
