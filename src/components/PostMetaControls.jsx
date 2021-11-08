@@ -27,14 +27,14 @@ const PostMetaControls = () => {
 			<>
 				<InspectorControls>
 					<PanelBody
-						title={__("Dynamic Content", "bszyk-plugins-dc")}
+						title={__("Dynamic Content", "dynamic-block-content")}
 						initialOpen={true}
 					>
 						<PanelRow>
 							<p>
 								{__(
 									"No post meta found! 🧐",
-									"bszyk-plugins-dc"
+									"dynamic-block-content"
 								)}
 							</p>
 						</PanelRow>
@@ -42,7 +42,7 @@ const PostMetaControls = () => {
 				</InspectorControls>
 				<ToolbarGroup>
 					<ToolbarButton
-						label={__("Enable Dynamic Content", "bszyk-plugins-dc")}
+						label={__("Enable Dynamic Content", "dynamic-block-content")}
 						icon="database"
 						onClick={() =>
 							dispatch("core/notices").createWarningNotice(
@@ -141,8 +141,8 @@ const PostMetaControls = () => {
 				block.clientId,
 				{
 					[contentAttKey]: "",
-					dc_metakey: "",
-					dc_enabled: false,
+					dbc_metakey: "",
+					dbc_enabled: false,
 				}
 			);
 		} else {
@@ -150,8 +150,8 @@ const PostMetaControls = () => {
 				block.clientId,
 				{
 					[contentAttKey]: value,
-					dc_metakey: key,
-					dc_enabled: true,
+					dbc_metakey: key,
+					dbc_enabled: true,
 				}
 			);
 		}
@@ -180,14 +180,14 @@ const PostMetaControls = () => {
 		const { attributes } = selectedBlock;
 
 		if (
-			"undefined" === typeof attributes["dc_metakey"] ||
-			null === attributes["dc_metakey"] ||
-			"" === attributes["dc_metakey"]
+			"undefined" === typeof attributes["dbc_metakey"] ||
+			null === attributes["dbc_metakey"] ||
+			"" === attributes["dbc_metakey"]
 		) {
 			return;
 		}
 
-		const metaKey = attributes["dc_metakey"];
+		const metaKey = attributes["dbc_metakey"];
 
 		setPostMetaKey(metaKey);
 	}, [selectedBlock]);
@@ -205,16 +205,16 @@ const PostMetaControls = () => {
 		const { attributes } = block;
 
 		if (
-			"undefined" === typeof attributes["dc_metakey"] ||
-			null === attributes["dc_metakey"] ||
-			"" === attributes["dc_metakey"] ||
-			false === attributes["dc_enabled"]
+			"undefined" === typeof attributes["dbc_metakey"] ||
+			null === attributes["dbc_metakey"] ||
+			"" === attributes["dbc_metakey"] ||
+			false === attributes["dbc_enabled"]
 		) {
 			return false;
 		} else if (
-			("string" === typeof attributes["dc_metakey"] &&
-				attributes["dc_metakey"].length > 0) ||
-			true === attributes["dc_enabled"]
+			("string" === typeof attributes["dbc_metakey"] &&
+				attributes["dbc_metakey"].length > 0) ||
+			true === attributes["dbc_enabled"]
 		) {
 			return true;
 		}
@@ -260,8 +260,8 @@ const PostMetaControls = () => {
 					icon="database"
 					label={
 						hasDynamicContent
-							? __("Dynamic Content enabled", "bszyk-plugins-dc")
-							: __("Enable Dynamic Content", "bszyk-plugins-dc")
+							? __("Dynamic Content enabled", "dynamic-block-content")
+							: __("Enable Dynamic Content", "dynamic-block-content")
 					}
 					onClick={() => setHasDynamicContent(!hasDynamicContent)}
 					isPressed={hasDynamicContent}
@@ -269,24 +269,24 @@ const PostMetaControls = () => {
 			</ToolbarGroup>
 			<InspectorControls>
 				<PanelBody
-					title={__("Dynamic Content", "bszyk-plugins-dc")}
+					title={__("Dynamic Content", "dynamic-block-content")}
 					initialOpen={true}
 				>
 					<PanelRow>
 						<ToggleControl
 							label={__(
 								"Toggle Dynamic Content",
-								"bszyk-plugins-dc"
+								"dynamic-block-content"
 							)}
 							help={
 								hasDynamicContent
 									? __(
 											"Dynamic Content enabled.",
-											"bszyk-plugins-dc"
+											"dynamic-block-content"
 									  )
 									: __(
 											"Dynamic Content disabled.",
-											"bszyk-plugins-dc"
+											"dynamic-block-content"
 									  )
 							}
 							checked={hasDynamicContent}
@@ -301,7 +301,7 @@ const PostMetaControls = () => {
 								<SelectControl
 									label={__(
 										"Select post meta key to display:",
-										"bszyk-plugins-dc"
+										"dynamic-block-content"
 									)}
 									value={selectedPostMetaKey}
 									onChange={(key) => setPostMetaKey(key)}
@@ -318,7 +318,7 @@ const PostMetaControls = () => {
 									<SelectControl
 										label={__(
 											"Select value:",
-											"bszyk-plugins-dc"
+											"dynamic-block-content"
 										)}
 										value={selectedPostMetaValue}
 										onChange={(value) =>

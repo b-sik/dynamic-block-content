@@ -51,15 +51,15 @@ addFilter(
 const withCurrentMeta = (atts, settings) => {
 	if (
 		!ALLOWED_BLOCKS.includes(settings.name) ||
-		"undefined" === typeof atts["dc_metakey"] ||
-		null === atts["dc_metakey"] ||
-		false === atts["dc_enabled"]
+		"undefined" === typeof atts["dbc_metakey"] ||
+		null === atts["dbc_metakey"] ||
+		false === atts["dbc_enabled"]
 	) {
 		return atts;
 	}
 
 	// grab meta key.
-	const metaKey = atts["dc_metakey"];
+	const metaKey = atts["dbc_metakey"];
 
 	// get the content key for the block.
 	const { contentAttKey } = ALLOWED_BLOCKS_SETTINGS[settings.name];
@@ -83,8 +83,8 @@ const withCurrentMeta = (atts, settings) => {
 		atts[
 			contentAttKey
 		] = `[[Dynamic Content Error: Metadata key \`${metaKey}\` no longer exists. Dynamic Content has been disabled for this block.]]`;
-		atts["dc_metakey"] = "";
-		atts["dc_enabled"] = false;
+		atts["dbc_metakey"] = "";
+		atts["dbc_enabled"] = false;
 	}
 
 	return atts;
@@ -111,9 +111,9 @@ addFilter(
 const withDynamicContent = (element, settings, atts) => {
 	if (
 		!ALLOWED_BLOCKS.includes(settings.name) ||
-		"undefined" === typeof atts["dc_metakey"] ||
-		null === atts["dc_metakey"] ||
-		false === atts["dc_enabled"]
+		"undefined" === typeof atts["dbc_metakey"] ||
+		null === atts["dbc_metakey"] ||
+		false === atts["dbc_enabled"]
 	) {
 		return element;
 	}
