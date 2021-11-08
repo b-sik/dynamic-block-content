@@ -1,4 +1,4 @@
-# bszyk-dynamic-content v0.1.0
+# dynamic-block-content v0.1.0
 
 **Enable WordPress blocks to display dynamic data that auto-updates on the frontend of your site.**
 
