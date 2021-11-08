@@ -1,22 +1,22 @@
 <?php // phpcs:ignore
 /**
- * Plugin Name:     Dynamic Content
- * Plugin URI:      https://bszyk.dev
+ * Plugin Name:     Dynamic Block Content
+ * Plugin URI:      https://github.com/bszyk/dynamic-block-content
  * Description:     Enable WordPress blocks to display dynamic data that auto-updates on the frontend of your site.
  * Author:          Brian Siklinski
  * Author URI:      https://bszyk.dev
- * Text Domain:     bszyk-plugins-dc
+ * Text Domain:     dynamic-block-content
  * Domain Path:     /languages
- * Version:         0.2.0
+ * Version:         0.1.0
  *
  * Requires at least: 4.5
  * Tested up to: 5.8.1
  * Requires PHP: 5.6
  *
- * @package         Bszyk_Dynamic_Content
+ * @package         Dynamic_Block_Content
  */
 
-namespace BSZYK_DYNAMIC_CONTENT;
+namespace DYNAMIC_BLOCK_CONTENT;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,10 +24,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use BSZYK_DYNAMIC_CONTENT\GetMeta;
-use BSZYK_DYNAMIC_CONTENT\ProcessBlocks;
+use DYNAMIC_BLOCK_CONTENT\GetMeta;
+use DYNAMIC_BLOCK_CONTENT\ProcessBlocks;
 
-define( 'DYNAMIC_CONTENT_VERSION', '0.2.0' );
+define( 'DYNAMIC_BLOCK_CONTENT_VERSION', '0.1.0' );
 
 /**
  * Dynamic Content.
@@ -66,7 +66,7 @@ class Dynamic_Content {
 			'bszyk-dynamic-content-scripts',
 			plugins_url( 'build/index.js', __FILE__ ),
 			array( 'wp-plugins', 'wp-edit-post', 'wp-i18n', 'wp-element', 'wp-i18n', 'wp-data' ),
-			DYNAMIC_CONTENT_VERSION,
+			DYNAMIC_BLOCK_CONTENT_VERSION,
 			true
 		);
 	}

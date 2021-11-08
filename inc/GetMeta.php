@@ -2,10 +2,10 @@
 /**
  * Get meta.
  *
- * @package Bszyk_Dynamic_Content
+ * @package Dynamic_Block_Content
  */
 
-namespace BSZYK_DYNAMIC_CONTENT;
+namespace DYNAMIC_BLOCK_CONTENT;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

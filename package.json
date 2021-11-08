@@ -1,7 +1,7 @@
 {
-  "name": "bszyk-dynamic-content",
-  "version": "0.2.0",
-  "description": "Inject dynamic post-meta into core-blocks.",
+  "name": "dynamic-block-content",
+  "version": "0.1.0",
+  "description": "Enable WordPress blocks to display dynamic data that auto-updates on the frontend of your site.",
   "main": "src/index.js",
   "scripts": {
     "start": "wp-scripts start",

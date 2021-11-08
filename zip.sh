@@ -11,7 +11,7 @@ echo "" &&
 # chmod 775
 
 # Variables
-PLUGIN="dynamic-content"
+PLUGIN="dynamic-block-content"
 DONE="\n🎉 done!\n"
 
 #############################################################

@@ -2,10 +2,10 @@
 /**
  * Process blocks serverside.
  *
- * @package Bszyk_Dynamic_Content
+ * @package Dynamic_Block_Content
  */
 
-namespace BSZYK_DYNAMIC_CONTENT;
+namespace DYNAMIC_BLOCK_CONTENT;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -43,9 +43,9 @@ class ProcessBlocks {
 			// check if it's in the allow list.
 			if ( isset( $block['blockName'] ) && in_array( $block['blockName'], ALLOWED_BLOCKS, true ) ) {
 				// check if it's a dynamic content block.
-				if ( isset( $block['attrs']['dc_metakey'] ) && isset( $block['attrs']['dc_enabled'] ) && true === $block['attrs']['dc_enabled'] ) {
+				if ( isset( $block['attrs']['dbc_metakey'] ) && isset( $block['attrs']['dbc_enabled'] ) && true === $block['attrs']['dbc_enabled'] ) {
 					// define the meta key.
-					$meta_key = $block['attrs']['dc_metakey'];
+					$meta_key = $block['attrs']['dbc_metakey'];
 
 					// grab the inner content.
 					$inner_content = $block['innerContent'][0];
