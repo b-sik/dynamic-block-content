@@ -7,7 +7,7 @@
  * Author URI:      https://bszyk.dev
  * Text Domain:     dynamic-block-content
  * Domain Path:     /languages
- * Version:         0.2.0
+ * Version:         0.1.0
  *
  * Requires at least: 4.5
  * Tested up to: 5.8.1

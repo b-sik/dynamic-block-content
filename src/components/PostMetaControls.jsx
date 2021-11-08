@@ -269,7 +269,7 @@ const PostMetaControls = () => {
 			</ToolbarGroup>
 			<InspectorControls>
 				<PanelBody
-					title={__("Dynamic Content", "dynamic-block-content")}
+					title={__("Dynamic Block Content", "dynamic-block-content")}
 					initialOpen={true}
 				>
 					<PanelRow>
