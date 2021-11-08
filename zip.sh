@@ -12,7 +12,6 @@ echo "" &&
 
 # Variables
 PLUGIN="dynamic-block-content"
-ZIP_FOLDER="_zip"
 DONE="\n🎉 done!\n"
 
 #############################################################
@@ -44,11 +43,15 @@ function getChangelog() {
 # Ask and store version
 read -r -p "Version: " VERSION
 
-# Make _zip folder
+# Make _releases folder
+ZIP_FOLDER="_releases/$VERSION"
+echo -e "\n📂 creating _releases folder \n"
+mkdir "_releases" || true
+echo -e "\n🗂  creating version folder \n"
 mkdir $ZIP_FOLDER || true
 
-# Define zip path
-ZIP_FILE="$PLUGIN-v$VERSION.zip"
+# Define zip file name
+ZIP_FILE="$PLUGIN.zip"
 
 # Offer overwrite option if zip version already exists
 if [ -f "$ZIP_FOLDER/$ZIP_FILE" ]; then
@@ -67,13 +70,13 @@ fi
 CHANGELOG=$(getChangelog "$1")
 
 # Append to top of changelog.txt
-echo -e "\n📝 updating changelog..."
+echo -e "\n📝 updating changelog...\n"
 echo -e "\n= $VERSION =\n$CHANGELOG\n$(cat changelog.txt)" >changelog.txt
 cat changelog.txt
 echo -e $DONE
 
 # Run npm build to create new dist files
-echo -e "\n⛏  building dist files..."
+echo -e "\n⛏  building dist files...\n"
 npm run build
 echo -e $DONE
 
