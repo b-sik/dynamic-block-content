@@ -5,13 +5,21 @@
     "authors": [
         {
             "name": "Brian Siklinski",
-            "email": "bsyzk.codes@gmail.com"
+            "email": "info@bsik.dev"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
           "DYNAMIC_BLOCK_CONTENT\\": "inc/"
         }
-      }
+      },
+    "require-dev": {
+        "bszyk/zip-wp": "dev-trunk"
+    },
+    "scripts": {
+        "zip-wp": [
+            "ZipWP\\ZipWP::run_script"
+        ]
+    }
 }

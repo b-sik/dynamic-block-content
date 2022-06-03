@@ -4,15 +4,73 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac4157491e90e8a3d5f8599b40c90f13",
+    "content-hash": "26f66a6bdaf95843788604b5545183b2",
     "packages": [],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "bszyk/zip-wp",
+            "version": "dev-trunk",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bszyk/zip-wp.git",
+                "reference": "0b4fec60f7a4a55c9aa1f35c074545ad60a7c8cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bszyk/zip-wp/zipball/0b4fec60f7a4a55c9aa1f35c074545ad60a7c8cb",
+                "reference": "0b4fec60f7a4a55c9aa1f35c074545ad60a7c8cb",
+                "shasum": ""
+            },
+            "require-dev": {
+                "php": ">=5.3.0"
+            },
+            "default-branch": true,
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-0": {
+                    "ZipWP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Siklinski",
+                    "email": "info@bsik.dev",
+                    "homepage": "https://bsik.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Create packaged & versioned WordPress plugin zip.",
+            "keywords": [
+                "wordpress",
+                "wordpress-plugin",
+                "zip"
+            ],
+            "support": {
+                "email": "info@bsik.dev",
+                "issues": "https://github.com/bszyk/zip-wp/issues",
+                "source": "https://github.com/bszyk/zip-wp/tree/trunk"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate/?business=QHL62AWL3PSMN&no_recurring=0&item_name=Anything+and+everything+helps%2C+thank+you%21",
+                    "type": "paypal"
+                }
+            ],
+            "time": "2021-11-10T02:31:29+00:00"
+        }
+    ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "bszyk/zip-wp": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
