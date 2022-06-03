@@ -12,5 +12,5 @@ The following blocks are currently supported:
 ---
 If you clone this repo:
 ```
-composer install && npm install && npm build
+composer install && npm install && npm run build
 ```
