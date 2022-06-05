@@ -49,8 +49,8 @@ class Dynamic_Content
 		add_action('enqueue_block_editor_assets', array($this, 'enqueue_assets'), 10, 0);
 		add_action('enqueue_block_editor_assets', array($this, 'localize_metadata'), 99, 0);
 
-		$parse_blocks = new ProcessBlocks();
-		$parse_blocks->init();
+		$process_blocks = new ProcessBlocks();
+		$process_blocks->init();
 	}
 
 	/**
