@@ -48,45 +48,72 @@ class ProcessBlocks {
 	}
 
 	/**
-	 * Update inner block content.
+	 * Update block content if dynamic content enabled or process inner blocks.
 	 *
 	 * @param object $block
 	 * @param int    $post_id
+	 *
+	 * @return object $block
 	 */
 	public function process_block( $block, $post_id ) {
 		if ( $this->is_block_allowed( $block ) && $this->is_dynamic_content_block( $block ) ) {
-			$inner_content = $block['innerContent'][0];
-			$meta_key      = $block['attrs']['dbc_metakey'];
-
-			if ( ! empty( $meta_key ) && metadata_exists( 'post', $post_id, $meta_key ) ) {
-				$meta_value = get_post_meta( $post_id, $meta_key, true );
-
-				if ( empty( $meta_value ) ) {
-					$meta_value = '[[Dynamic Content Warning: Value of `' . $meta_key . '` is empty.]]';
-				}
-
-				$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, $meta_value, $inner_content );
-			} elseif ( empty( $meta_key ) ) {
-				// @TODO settings option to turn debugging messages on/off
-				$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Warning: Metadata key is empty.]]', $inner_content );
-			} elseif ( ! metadata_exists( 'post', $post_id, $meta_key ) ) {
-				$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Error: Metadata key `' . $meta_key . '` no longer exists.]]', $inner_content );
-			} else {
-				$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Error: Congrats! 🎉 You found a new error!]]', $inner_content );
-			}
-
-			$block['innerContent'][0] = $inner_content;
-		} else {
-			if ( $this->has_inner_blocks( $block ) ) {
-				$i_blocks = $block['innerBlocks'];
-
-				foreach ( $i_blocks as &$i_block ) {
-					$i_block = $this->process_block( $i_block, $post_id );
-				}
-				$block['innerBlocks'] = $i_blocks;
-			}
+			$block = $this->set_dynamic_content( $block, $post_id );
+		} elseif ( $this->has_inner_blocks( $block ) ) {
+			$block = $this->process_inner_blocks( $block, $post_id );
 		}
 
+		return $block;
+	}
+
+	/**
+	 * Update inner blocks content if dynamic content enabled.
+	 *
+	 * @param object $block
+	 * @param int    $post_id
+	 *
+	 * @return object $block
+	 */
+	public function process_inner_blocks( $block, $post_id ) {
+		$inner_blocks = $block['innerBlocks'];
+
+		foreach ( $inner_blocks as &$inner_block ) {
+			$inner_block = $this->process_block( $inner_block, $post_id );
+		}
+
+		$block['innerBlocks'] = $inner_blocks;
+		return $block;
+	}
+
+	/**
+	 * Update block content with meta key value.
+	 *
+	 * @param object $block
+	 * @param int    $post_id
+	 *
+	 * @return object $block
+	 */
+	public function set_dynamic_content( $block, $post_id ) {
+		$inner_content = $block['innerContent'][0];
+		$meta_key      = $block['attrs']['dbc_metakey'];
+
+		if ( ! empty( $meta_key ) && metadata_exists( 'post', $post_id, $meta_key ) ) {
+			$meta_value = get_post_meta( $post_id, $meta_key, true );
+
+			if ( empty( $meta_value ) ) {
+				$meta_value = '[[Dynamic Content Warning: Value of `' . $meta_key . '` is empty.]]';
+			}
+
+			$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, $meta_value, $inner_content );
+		} elseif ( empty( $meta_key ) ) {
+			// @TODO settings option to turn debugging messages on/off
+			$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Warning: Metadata key is empty.]]', $inner_content );
+		} elseif ( ! metadata_exists( 'post', $post_id, $meta_key ) ) {
+			$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Error: Metadata key `' . $meta_key . '` no longer exists.]]', $inner_content );
+		} else {
+			$inner_content = str_replace( THE_DYNAMIC_CONTENT_STRING, '[[Dynamic Content Error: Congrats! 🎉 You found a new error!]]', $inner_content );
+		}
+
+		$block['innerContent'][0] = $inner_content;
 		return $block;
 	}
 
