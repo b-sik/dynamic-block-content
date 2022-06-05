@@ -1,4 +1,7 @@
 
+= 0.1.2 =
+* Works with nested/inner blocks
+
 = 0.1.1 =
 * Fix frontend rendering bug
 * Tested up to WordPress 6.0

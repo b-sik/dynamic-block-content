@@ -7,7 +7,7 @@
  * Author URI:      https://bsik.dev
  * Text Domain:     dynamic-block-content
  * Domain Path:     /languages
- * Version:         0.1.1
+ * Version:         0.1.2
  *
  * Requires at least: 4.5
  * Tested up to: 6.0
@@ -27,7 +27,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use DYNAMIC_BLOCK_CONTENT\GetMeta;
 use DYNAMIC_BLOCK_CONTENT\ProcessBlocks;
 
-define('DYNAMIC_BLOCK_CONTENT_VERSION', '0.1.1');
+define('DYNAMIC_BLOCK_CONTENT_VERSION', '0.1.2');
 
 /**
  * Dynamic Content.
