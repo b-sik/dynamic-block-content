@@ -10,7 +10,7 @@
   "author": "Brian Siklinski",
   "license": "ISC",
   "devDependencies": {
-    "@wordpress/scripts": "^16.0.0"
+    "@wordpress/scripts": "^23.2.0"
   },
   "dependencies": {
     "@wordpress/components": "^14.0.0",
