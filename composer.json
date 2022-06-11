@@ -1,25 +1,17 @@
 {
-    "name": "bszyk/dynamic-block-content",
-    "description": "Enable WordPress blocks to display dynamic data that auto-updates on the frontend of your site.",
-    "license": "GPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "Brian Siklinski",
-            "email": "info@bsik.dev"
-        }
-    ],
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-          "DYNAMIC_BLOCK_CONTENT\\": "inc/"
-        }
-      },
-    "require-dev": {
-        "bszyk/zip-wp": "dev-trunk"
-    },
-    "scripts": {
-        "zip-wp": [
-            "ZipWP\\ZipWP::run_script"
-        ]
+  "name": "bszyk/dynamic-block-content",
+  "description": "Enable WordPress blocks to display dynamic data that auto-updates on the frontend of your site.",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Brian Siklinski",
+      "email": "info@bsik.dev"
     }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "DYNAMIC_BLOCK_CONTENT\\": "inc/"
+    }
+  }
 }

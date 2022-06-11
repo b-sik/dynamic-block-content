@@ -1,4 +1,9 @@
 
+= 0.1.3 =
+* Filter out serialized values
+* Remove dev dependency from composer.json
+* Remove defining constants from json
+
 = 0.1.2 =
 * Works with nested/inner blocks
 

@@ -5,7 +5,7 @@ Tags: dynamic content, metadata, gutenberg, blocks, custom fields, frontend
 Requires at least: 4.5
 Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -35,6 +35,14 @@ Not yet! Currently the dynamic value will take over the entire block.
 1. View of the editor with Dynamic Content enabled on a paragraph block.
 
 == Changelog ==
+
+= 0.1.3 =
+* Filter out serialized values
+* Remove dev dependency from composer.json
+* Remove defining constants from json
+
+= 0.1.2 =
+* Works with nested/inner blocks
 
 = 0.1.1 =
 * Fix frontend rendering bug
