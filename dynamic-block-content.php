@@ -30,6 +30,12 @@ use DYNAMIC_BLOCK_CONTENT\ProcessBlocks;
 define('DYNAMIC_BLOCK_CONTENT_VERSION', '0.1.2');
 
 /**
+ * Define global variables.
+ */
+define('ALLOWED_BLOCKS', array("core/paragraph", "core/heading", "core/verse"));
+define('THE_DYNAMIC_CONTENT_STRING', "[[bszyk-dynamic-content]]");
+
+/**
  * Dynamic Content.
  */
 class Dynamic_Content
@@ -76,22 +82,6 @@ class Dynamic_Content
 		);
 	}
 }
-
-/**
- * Define constants from json.
- */
-function define_constants()
-{
-	$json = file_get_contents(__DIR__ . '/constants.json'); // phpcs:ignore
-	$constants = json_decode($json);
-
-	foreach ($constants as $constant => $definition) {
-		if (!is_object($definition)) {
-			define($constant, $definition);
-		}
-	}
-}
-define_constants();
 
 $dynamic_content = new Dynamic_Content();
 $dynamic_content->init();

@@ -1,7 +1,5 @@
-import * as CONSTANTS from "../constants.json";
-
-export const ALLOWED_BLOCKS = CONSTANTS.ALLOWED_BLOCKS;
-export const THE_DYNAMIC_CONTENT_STRING = CONSTANTS.THE_DYNAMIC_CONTENT_STRING;
+export const ALLOWED_BLOCKS = ["core/paragraph", "core/heading", "core/verse"];
+export const THE_DYNAMIC_CONTENT_STRING = "[[bszyk-dynamic-content]]";
 
 /** Attributes to add to allowed blocks */
 export const META_KEY_ATTS = {

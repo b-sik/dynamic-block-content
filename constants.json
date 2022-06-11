@@ -1,4 +1,0 @@
-{
-  "ALLOWED_BLOCKS": ["core/paragraph", "core/heading", "core/verse"],
-  "THE_DYNAMIC_CONTENT_STRING": "[[bszyk-dynamic-content]]"
-}
